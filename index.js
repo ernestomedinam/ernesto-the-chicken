@@ -17,28 +17,38 @@ window.onload = function () {
     const lines = [
         "The chicken ponders whether to cross or not...",
         "All of a sudden, a cat appears!!",
-        "The dog came to say hello too",
-        "Then the dog said goodbye and left",
-        "The dog ran into another dog",
-        "The chicken followed the dogs outside"
+        // "The dog came to say hello too",
+        // "Then the dog said goodbye and left",
+        // "The dog ran into another dog",
+        // "The chicken followed the dogs outside"
     ];
-    const reducedLisString = lines.reduce(
-        (finalString, line, index, copyArr) => {
-            return `${finalString}<li>${line}</li>`
-        }, "" // <- finalString initial value
-    );
-
-    // regular looping way
-    // let lisString = "";
-    // for (const line of lines) {
-    //     // add an '<li> </li>' to the lisString
-    //     lisString += `<li>${line}</li>`;
-    // }
-
     // grab the ul
     const ul = document.querySelector("ul");
-    // add string as innerHTML
-    ul.innerHTML = reducedLisString;
+    for (let index = 0; index < lines.length; index++) {
+        // create an LI element
+        const li = document.createElement("li"); // <- <li></li>
+        // update LI's textContent with the line string
+        li.textContent = lines[index]; // <- <li>the chicken ponder.....</li>
+        // append this LI as a child to the UL
+        ul.appendChild(li);
+    }
+    const button = document.querySelector("button");
+    button.addEventListener("click", addANewLineFromInput);
+};
+
+function addANewLineFromInput(event) {
+    // create a new LI element
+    let li = document.createElement("li");
+    // get ahold of the input
+    const input = document.querySelector("input");
+    // update LI's textContent with the input value
+    li.textContent = input.value;
+    // get ahold of the UL
+    const bubulala = document.querySelector("ul");
+    // append LI as an UL child 
+    bubulala.appendChild(li);
+    // clean input
+    input.value = "";
 };
 
 function getInitialData() {
