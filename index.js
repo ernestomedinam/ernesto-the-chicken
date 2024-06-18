@@ -34,6 +34,20 @@ window.onload = function () {
     }
     const button = document.querySelector("button");
     button.addEventListener("click", addANewLineFromInput);
+    // grab the input-row
+    const inputRow = document.querySelector("#input-row");
+    // add event listener to row, in order to clean the input
+    inputRow.addEventListener(
+        "click",
+        cleanInput
+    );
+    // find the input inside the input-row
+};
+
+function cleanInput(event) {
+    const inputRow = event.currentTarget;
+    const input = inputRow.querySelector("input");
+    input.value = "";
 };
 
 function addANewLineFromInput(event) {
@@ -46,9 +60,11 @@ function addANewLineFromInput(event) {
     // get ahold of the UL
     const bubulala = document.querySelector("ul");
     // append LI as an UL child 
-    bubulala.appendChild(li);
-    // clean input
-    input.value = "";
+    // bubulala.appendChild(li);
+    bubulala.append(li);
+    // remove event listener from button
+    const button = document.querySelector("button");
+    button.removeEventListener("click", addANewLineFromInput);
 };
 
 function getInitialData() {
